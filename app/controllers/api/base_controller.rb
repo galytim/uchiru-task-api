@@ -4,6 +4,6 @@ class Api::BaseController < ApplicationController
   private
 
   def render_unprocessable_entity(exception)
-    render json: { error: exception.message }, status: :unprocessable_entity
+    render json: {error: exception.message}, status: :unprocessable_entity
   end
 end
