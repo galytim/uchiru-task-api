@@ -150,6 +150,7 @@ components:
       schema:
         type: integer
         format: int32
+        example: 1
     class_id:
       name: class_id
       in: path
@@ -158,6 +159,7 @@ components:
       schema:
         type: integer
         format: int32
+        example: 1
   schemas:
     Class:
       type: object
@@ -214,6 +216,8 @@ components:
         class_id:
           type: integer
           format: int32
+          example: 1
         school_id:
           type: integer
           format: int32
+          example: 1

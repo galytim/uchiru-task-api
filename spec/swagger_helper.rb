@@ -25,7 +25,8 @@ RSpec.configure do |config|
             required: true,
             schema: {
               type: :integer,
-              format: :int32
+              format: :int32,
+              example: 1
             }
           },
           class_id: {
@@ -35,7 +36,8 @@ RSpec.configure do |config|
             description: "id класса",
             schema: {
               type: :integer,
-              format: :int32
+              format: :int32,
+              example: 1
             }
           }
         },
@@ -48,8 +50,8 @@ RSpec.configure do |config|
               first_name: {type: :string, example: "Вячеслав"},
               last_name: {type: :string, example: "Абдурахмангаджиевич"},
               surname: {type: :string, example: "Мухобойников-Сыркин"},
-              class_id: {type: :integer, format: :int32},
-              school_id: {type: :integer, format: :int32}
+              class_id: {type: :integer, format: :int32, example: 1},
+              school_id: {type: :integer, format: :int32, example: 1}
             }
           },
           Class: {

@@ -10,6 +10,8 @@ gem "rswag-api"
 gem "rswag-ui"
 gem "rack-cors"
 gem "panko_serializer"
+gem "rails-i18n", "~> 7.0"
+
 group :development, :test do
   gem "standard", ">= 1.35.1"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
