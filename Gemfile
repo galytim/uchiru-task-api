@@ -9,6 +9,7 @@ gem "bootsnap", require: false
 gem 'rswag-api'
 gem 'rswag-ui'
 gem "rack-cors"
+gem "panko_serializer"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

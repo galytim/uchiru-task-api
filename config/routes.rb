@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       resources :students, only: [ :create ]
       delete "students/:user_id", to: "students#destroy"
       resources :schools, only: [] do
-        resources :classes, controller: :school_classes, only: [] do
-          get :students
+        resources :classes, controller: :school_classes, only: :index do
+          resources :students, only: :index
         end
       end
     end

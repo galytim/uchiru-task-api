@@ -51,6 +51,16 @@ RSpec.configure do |config|
               class_id: { type: :integer, format: :int32 },
               school_id: { type: :integer, format: :int32 }
             }
+          },
+          Class: {
+            type: :object,
+            required: %w[id number letter students_count],
+            properties: {
+              id: { type: :integer, format: :int32, example: 10, readOnly: true },
+              number: { type: :integer, format: :int32, example: 1, description: 'Цифра класса' },
+              letter: { type: :string, example: 'Б', description: 'Буква класса' },
+              students_count: { type: :integer, format: :int32, example: 32, readOnly: true, description: 'Количество учеников в классе' }
+            }
           }
         }
       }
