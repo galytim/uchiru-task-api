@@ -1,42 +1,12 @@
 openapi: 3.0.3
 info:
-  title: API V1
-  version: v1
+  title: API сервиса для тестового задания
+  version: 0.1.0
 tags:
-- name: students
-  description: Всё что касается учеников
-- name: classes
-  description: Всё что касается классов
-paths:
-  "/schools/{school_id}/classes/{class_id}/students":
-    parameters:
-    - name: school_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    - name: class_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    get:
-      summary: Список студентов
-      tags:
-      - students
-      - classes
-      responses:
-        '200':
-          description: Список студентов
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Student"
+  - name: students
+    description: Всё что касается учеников
+  - name: classes
+    description: Всё что касается классов
 paths:
   /students:
     post:
@@ -133,8 +103,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Class'
-servers:
-- url: http://localhost:3000/api/v1
 components:
   securitySchemes:
     bearerAuth:
@@ -152,9 +120,9 @@ components:
         format: int32
     class_id:
       name: class_id
+      description: id класса
       in: path
       required: true
-      description: id класса
       schema:
         type: integer
         format: int32
