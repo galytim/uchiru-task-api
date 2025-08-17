@@ -6,9 +6,9 @@ RSpec.configure do |config|
   config.swagger_docs = {
     "v1/swagger.yaml" => {
       openapi: "3.0.3",
-      info: {title: "API V1", version: "v1"},
+      info: { title: "API V1", version: "v1" },
       paths: {},
-      servers: [{url: "http://localhost:3000/api/v1"}],
+      servers: [ { url: "http://localhost:3000/api/v1" } ],
       components: {
         securitySchemes: {
           bearerAuth: {
@@ -46,22 +46,22 @@ RSpec.configure do |config|
             type: :object,
             required: %w[id first_name last_name surname class_id school_id],
             properties: {
-              id: {type: :integer, format: :int64, example: 10, readOnly: true},
-              first_name: {type: :string, example: "Вячеслав"},
-              last_name: {type: :string, example: "Абдурахмангаджиевич"},
-              surname: {type: :string, example: "Мухобойников-Сыркин"},
-              class_id: {type: :integer, format: :int32, example: 1},
-              school_id: {type: :integer, format: :int32, example: 1}
+              id: { type: :integer, format: :int64, example: 10, readOnly: true },
+              first_name: { type: :string, example: "Вячеслав" },
+              last_name: { type: :string, example: "Абдурахмангаджиевич" },
+              surname: { type: :string, example: "Мухобойников-Сыркин" },
+              class_id: { type: :integer, format: :int32, example: 1 },
+              school_id: { type: :integer, format: :int32, example: 1 }
             }
           },
           Class: {
             type: :object,
             required: %w[id number letter students_count],
             properties: {
-              id: {type: :integer, format: :int32, example: 10, readOnly: true},
-              number: {type: :integer, format: :int32, example: 1, description: "Цифра класса"},
-              letter: {type: :string, example: "Б", description: "Буква класса"},
-              students_count: {type: :integer, format: :int32, example: 32, readOnly: true, description: "Количество учеников в классе"}
+              id: { type: :integer, format: :int32, example: 10, readOnly: true },
+              number: { type: :integer, format: :int32, example: 1, description: "Цифра класса" },
+              letter: { type: :string, example: "Б", description: "Буква класса" },
+              students_count: { type: :integer, format: :int32, example: 32, readOnly: true, description: "Количество учеников в классе" }
             }
           }
         }

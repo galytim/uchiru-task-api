@@ -14,7 +14,7 @@ RSpec.describe "api/v1/students", type: :request do
           properties: {
             data: {
               type: :array,
-              items: {"$ref" => "#/components/schemas/Student"}
+              items: { "$ref" => "#/components/schemas/Student" }
             }
           }
 
@@ -34,7 +34,7 @@ RSpec.describe "api/v1/students", type: :request do
       tags "students"
       consumes "application/json"
       produces "application/json"
-      parameter name: :student, in: :body, schema: {"$ref" => "#/components/schemas/Student"}
+      parameter name: :student, in: :body, schema: { "$ref" => "#/components/schemas/Student" }
 
       response(201, "Successful operation") do
         let(:school) { School.create!(name: "Test School") }
@@ -57,7 +57,7 @@ RSpec.describe "api/v1/students", type: :request do
       end
 
       response(422, "Invalid input") do
-        let(:student) { {first_name: ""} }
+        let(:student) { { first_name: "" } }
         run_test!
       end
     end
@@ -67,8 +67,8 @@ RSpec.describe "api/v1/students", type: :request do
     delete("Удалить студента") do
       tags "students"
       produces "application/json"
-      parameter name: :user_id, in: :path, schema: {type: :integer}
-      parameter name: :Authorization, in: :header, schema: {type: :string}, required: true
+      parameter name: :user_id, in: :path, schema: { type: :integer }
+      parameter name: :Authorization, in: :header, schema: { type: :string }, required: true
 
       let(:school) { School.create!(name: "Test School") }
       let(:school_class) { school.school_classes.create!(number: 1, letter: "A") }
