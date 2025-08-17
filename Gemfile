@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 7.2.2", ">= 7.2.2.2"
+gem "rails", "~> 8.0.2"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 
@@ -10,7 +10,7 @@ gem "rswag-api"
 gem "rswag-ui"
 gem "rack-cors"
 gem "panko_serializer"
-gem "rails-i18n", "~> 7.0"
+gem "rails-i18n", "~> 8.0"
 
 group :development, :test do
   gem "standard", ">= 1.35.1"
