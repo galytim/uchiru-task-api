@@ -13,7 +13,7 @@ RSpec.describe "api/v1/school_classes", type: :request do
           properties: {
             data: {
               type: :array,
-              items: { "$ref" => "#/components/schemas/Class" }
+              items: {"$ref" => "#/components/schemas/Class"}
             }
           }
 

@@ -36,12 +36,12 @@ class Api::V1::StudentsController < Api::BaseController
 
   def set_student!
     @student = Student.find_by(id: params[:user_id])
-    render json: { error: I18n.t("activerecord.errors.students.invalid_id") }, status: :bad_request unless @student
+    render json: {error: I18n.t("activerecord.errors.students.invalid_id")}, status: :bad_request unless @student
   end
 
   def authenticate_student!
     token = request.headers["Authorization"].to_s.delete_prefix("Bearer ")
     authorized = Api::V1::StudentAuthTokenService.new(student: @student, token:).authorize!
-    render json: { error: I18n.t("activerecord.errors.students.unauthorized") }, status: :unauthorized unless authorized
+    render json: {error: I18n.t("activerecord.errors.students.unauthorized")}, status: :unauthorized unless authorized
   end
 end
