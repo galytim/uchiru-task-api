@@ -6,7 +6,7 @@ class Api::V1::StudentsController < Api::BaseController
     school = School.find(params[:school_id])
     school_class = school.school_classes.includes(:students).find(params[:class_id])
     students = school_class.students
-    render json:  { 
+    render json:  {
       data: Panko::ArraySerializer.new(
         students,
         each_serializer: StudentSerializer
@@ -36,12 +36,12 @@ class Api::V1::StudentsController < Api::BaseController
 
   def set_student!
     @student = Student.find_by(id: params[:user_id])
-    render json: { error: "Некорректный id студента" }, status: :bad_request unless @student
+    render json: {error: I18n.t("activerecord.errors.students.invalid_id")}, status: :bad_request unless @student
   end
 
   def authenticate_student!
     token = request.headers["Authorization"].to_s.delete_prefix("Bearer ")
     authorized = Api::V1::StudentAuthTokenService.new(student: @student, token:).authorize!
-    render json: { error: "Unauthorized" }, status: :unauthorized unless authorized
+    render json: {error: I18n.t("activerecord.errors.students.unauthorized")}, status: :unauthorized unless authorized
   end
 end

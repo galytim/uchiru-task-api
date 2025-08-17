@@ -1,0 +1,31 @@
+ru:
+  activerecord:
+    models:
+      student: "Студент"
+      school: "Школа"
+      school_class: "Класс"
+    attributes:
+      student:
+        first_name: "Имя"
+        last_name: "Отчество"
+        surname: "Фамилия"
+        surname: "Фамилия"
+        school: "Школа"
+        school_class: "Класс"
+      school:
+        name: "Название"
+      school_class:
+        number: "Цифра класса"
+        letter: "Буква класса"
+
+    errors:
+      messages:
+        blank: "не может быть пустым"
+      students:
+        invalid_id: "Некорректный id студента"
+        unauthorized: "Неавторизован"
+        not_found: "Студент с id=%{id} не найден"
+      school:
+        not_found: "Школа с id=%{id} не найдена"
+      school_class:
+        not_found: "Класс с id=%{id} не найден"
