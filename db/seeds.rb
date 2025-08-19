@@ -6,7 +6,6 @@ school1.school_classes.create!(number: 11, letter: "Б")
 school1.school_classes.create!(number: 3, letter: "В")
 school1.school_classes.create!(number: 2, letter: "Г")
 
-
 school2.school_classes.create!(number: 10, letter: "A")
 school2.school_classes.create!(number: 9, letter: "Б")
 school2.school_classes.create!(number: 8, letter: "В")
