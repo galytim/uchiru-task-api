@@ -18,13 +18,23 @@ RSpec.describe "api/v1/students", type: :request do
             }
           }
 
-        let(:school) { School.create!(name: "Test School") }
-        let(:school_class) { school.school_classes.create!(number: 1, letter: "A") }
+        let(:school) { create(:school, :with_classes) }
         let(:school_id) { school.id }
+        let(:school_class) { school.school_classes.first }
         let(:class_id) { school_class.id }
         let!(:student) { school_class.students.create!(first_name: "John", last_name: "Doe", surname: "Smith", school:) }
 
-        run_test!
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          data = body["data"].first
+
+          expect(data["id"]).to eq(student.id)
+          expect(data["first_name"]).to eq("John")
+          expect(data["last_name"]).to eq("Doe")
+          expect(data["surname"]).to eq("Smith")
+          expect(data["school_id"]).to eq(school.id)
+          expect(data["class_id"]).to eq(school_class.id)
+        end
       end
     end
   end
@@ -42,8 +52,8 @@ RSpec.describe "api/v1/students", type: :request do
             data: {"$ref" => "#/components/schemas/Student"}
           }
 
-        let(:school) { School.create!(name: "Test School") }
-        let(:school_class) { school.school_classes.create!(number: 1, letter: "A") }
+        let(:school) { create(:school, :with_classes) }
+        let(:school_class) { school.school_classes.first }
         let(:student) do
           {
             first_name: "Вячеслав",
@@ -54,7 +64,16 @@ RSpec.describe "api/v1/students", type: :request do
           }
         end
 
-        run_test!
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          data = body["data"]
+
+          expect(data["first_name"]).to eq("Вячеслав")
+          expect(data["last_name"]).to eq("Абдурахмангаджиевич")
+          expect(data["surname"]).to eq("Мухобойников-Сыркин")
+          expect(data["school_id"]).to eq(school.id)
+          expect(data["class_id"]).to eq(school_class.id)
+        end
       end
 
       response(422, "Invalid input") do
@@ -71,9 +90,9 @@ RSpec.describe "api/v1/students", type: :request do
       parameter name: :user_id, in: :path, schema: {type: :integer}
       parameter name: :Authorization, in: :header, schema: {type: :string}, required: true
 
-      let(:school) { School.create!(name: "Test School") }
-      let(:school_class) { school.school_classes.create!(number: 1, letter: "A") }
-      let!(:student_record) do
+      let(:school) { create(:school, :with_classes) }
+      let(:school_class) { school.school_classes.first }
+      let!(:student) do
         Student.create!(
           first_name: "Вячеслав",
           last_name: "Абдурахмангаджиевич",
@@ -82,8 +101,8 @@ RSpec.describe "api/v1/students", type: :request do
           class_id: school_class.id
         )
       end
-      let(:user_id) { student_record.id }
-      let(:Authorization) { "Bearer #{Digest::SHA256.hexdigest("#{student_record.id}#{Rails.application.credentials.secret_key_base}")}" }
+      let(:user_id) { student.id }
+      let(:Authorization) { "Bearer #{Digest::SHA256.hexdigest("#{student.id}#{Rails.application.credentials.secret_key_base}")}" }
 
       response(204, "No Content") do
         run_test! do

@@ -17,12 +17,13 @@ RSpec.describe "api/v1/school_classes", type: :request do
             }
           }
 
-        let(:school) { School.create!(name: "Test School") }
+        let(:school) { create(:school) }
         let(:school_id) { school.id }
         let!(:school_class) { school.school_classes.create!(number: 1, letter: "A") }
 
         run_test! do |response|
           body = JSON.parse(response.body)
+          expect(body["data"].first["id"]).to eq(school_class.id)
           expect(body["data"].first["number"]).to eq(1)
           expect(body["data"].first["letter"]).to eq("A")
         end

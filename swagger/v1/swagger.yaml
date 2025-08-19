@@ -1,45 +1,15 @@
 openapi: 3.0.3
 info:
-  title: API V1
-  version: v1
+  title: API сервиса для тестового задания
+  version: 0.1.0
 tags:
-- name: students
-  description: Всё что касается учеников
-- name: classes
-  description: Всё что касается классов
-paths:
-  "/schools/{school_id}/classes/{class_id}/students":
-    parameters:
-    - name: school_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    - name: class_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    get:
-      summary: Список студентов
-      tags:
-      - students
-      - classes
-      responses:
-        '200':
-          description: Список студентов
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Student"
+  - name: students
+    description: Всё что касается учеников
+  - name: classes
+    description: Всё что касается классов
 paths:
   /students:
-    post:
+    post: 
       tags:
         - students
       summary: Регистрация нового студента
@@ -56,7 +26,7 @@ paths:
           description: Successful operation
           headers:
             X-Auth-Token:
-              description: Токен для последующей авторизации, например sha256(user_id + secret_salt)
+              description: Токен для авторизации
               example: 3525dcdddea774939652f7f11df6d7db10a9db35a5d758c64d600a00c1cc41be
               schema:
                 type: string
@@ -153,9 +123,9 @@ components:
         example: 1
     class_id:
       name: class_id
+      description: id класса
       in: path
       required: true
-      description: id класса
       schema:
         type: integer
         format: int32

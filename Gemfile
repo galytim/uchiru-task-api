@@ -18,4 +18,5 @@ group :development, :test do
   gem "brakeman", require: false
   gem "rspec-rails"
   gem "rswag-specs"
+  gem "factory_bot_rails"
 end

@@ -8,7 +8,7 @@ RSpec.configure do |config|
   config.swagger_docs = {
     "v1/swagger.yaml" => {
       openapi: "3.0.3",
-      info: {title: "API V1", version: "v1"},
+      info: {title: "API сервиса для тестового задания", version: "0.1.0"},
       paths: {},
       servers: [{url: "http://localhost:3000/api/v1"}],
       **components
