@@ -12,7 +12,12 @@ docker compose build
 ## Подготовка базы данных
 
 ```bash
-docker compose exec rails db:setup
+docker compose exec web bash
+```
+
+```bash
+rails db:migrate
+rails db:seed
 ```
 ## Запуск
 
